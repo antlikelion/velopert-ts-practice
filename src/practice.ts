@@ -7,10 +7,7 @@ interface Shape {
 }
 
 class Circle implements Shape {
-    radius: number
-    // 멤버 변수의 설정
-    // public또는 private accessor를 이용하면 멤버 변수의 설정을 constructor안에 내장할 수 있음
-    constructor(radius:number){
+    constructor(public radius:number){
         this.radius=radius
     }
 
@@ -20,9 +17,7 @@ class Circle implements Shape {
 }
 
 class Rectangle implements Shape {
-    width: number
-    height: number
-    constructor(width:number, height:number) {
+    constructor(private width:number, private height:number) {
         this.width = width
         this.height = height
     }
@@ -30,6 +25,12 @@ class Rectangle implements Shape {
         return this.width * this.height
     }
 }
+
+const circle = new Circle(5)
+const rectangle = new Rectangle(10, 5)
+
+console.log(circle.radius); // radius는 public으로 선언되어서 클래스 코드의 밖에서도 조회 가능
+// console.log(rectangle.width); // width는 private으로 선언되어서 클래스 코드 내에서만 조회 가능
 
 const shapes: Shape[] = [new Circle(5), new Rectangle(10, 5)]
 
